@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "1078485876873",
+    "project_id": "panara-7a588",
+    "storage_bucket": "panara-7a588.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078485876873:android:354c579b2f9d62c5f24658",
+        "android_client_info": {
+          "package_name": "com.example.panara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078485876873-ekjrf0lq74mmrc7hvkt0i2l1m57gm5jf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.panara",
+            "certificate_hash": "1496ae024a3c52f040fe5eaa6654ec7ec8b94b81"
+          }
+        },
+        {
+          "client_id": "1078485876873-v73an0beg1d5gbbe92lajk243trsha5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzuYCFTUX0LRzR1FArA2STlMUDh8lduis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078485876873-v73an0beg1d5gbbe92lajk243trsha5c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1078485876873-60fol8ginv3hag099q41oun1ja80no72.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.panara"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078485876873:android:168162392653a0dff24658",
+        "android_client_info": {
+          "package_name": "com.example.panara_studios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078485876873-v73an0beg1d5gbbe92lajk243trsha5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzuYCFTUX0LRzR1FArA2STlMUDh8lduis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078485876873-v73an0beg1d5gbbe92lajk243trsha5c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1078485876873-60fol8ginv3hag099q41oun1ja80no72.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.panara"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
