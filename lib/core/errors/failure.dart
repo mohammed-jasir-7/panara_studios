@@ -10,3 +10,6 @@ class ServerFailure extends Failure {
 class InternetFailure extends Failure {
   InternetFailure({required super.errorMessage});
 }
+class DatabaseFailure extends Failure {
+  DatabaseFailure({required super.errorMessage});
+}

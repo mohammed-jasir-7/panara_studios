@@ -6,6 +6,7 @@ import 'package:panara_studios/core/widgets/loading_screen.dart';
 import 'package:panara_studios/features/authentication/presentation/bloc/authentication_bloc.dart';
 
 import 'package:panara_studios/features/authentication/presentation/pages/signing_page.dart';
+import 'package:panara_studios/features/feeds/presentation/bloc/feeds_bloc.dart';
 import 'package:panara_studios/features/feeds/presentation/pages/home_page.dart';
 import 'package:panara_studios/injectable.dart';
 import 'firebase_options.dart';
@@ -38,6 +39,11 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (context) => getIt<AuthenticationBloc>(),
+        
+        ),
+        BlocProvider(
+          create: (context) => getIt<FeedsBloc>(),
+        
         ),
       ],
       child: ScreenUtilInit(
