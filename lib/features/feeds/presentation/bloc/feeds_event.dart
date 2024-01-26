@@ -10,3 +10,9 @@ const AddFeedEvent({required this.file});
  @override
   List<Object?> get props => [file];
 }
+
+class FetchfeedEvent extends FeedsEvent{
+  @override
+  List<Object?> get props => throw UnimplementedError();
+
+}

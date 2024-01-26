@@ -18,7 +18,7 @@ class _SiginingScreenState extends State<SiginingScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-      context.read<AuthenticationBloc>().add(SignInEvent());
+      context.read<AuthenticationBloc>().add(InitalAuthenticationEvent());
   }
   @override
   Widget build(BuildContext context) {

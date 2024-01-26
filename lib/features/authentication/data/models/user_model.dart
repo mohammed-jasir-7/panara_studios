@@ -2,17 +2,12 @@ import 'package:panara_studios/features/authentication/domain/entities/user_enti
 
 class UserModel extends UserEntity {
   UserModel({
-    required String name,
-    required String email,
-    required bool isNewUser,
-    required String uid,
-    required String photo,
-  }) : super(
-            email: email,
-            isNewUser: isNewUser,
-            name: name,
-            photo: photo,
-            uid: uid);
+    required super.name,
+    required super.email,
+    required super.isNewUser,
+    required super.uid,
+    required super.photo,
+  });
   Map<String , dynamic> toJson(){
     return { 'email': email,
             "isNewUser": isNewUser,

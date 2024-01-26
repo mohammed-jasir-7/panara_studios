@@ -21,9 +21,9 @@ import 'package:panara_studios/features/authentication/data/repositories/authent
 import 'package:panara_studios/features/authentication/domain/repositories/authentication_repository.dart'
     as _i9;
 import 'package:panara_studios/features/authentication/domain/usecases/google_signin.dart'
-    as _i13;
+    as _i14;
 import 'package:panara_studios/features/authentication/presentation/bloc/authentication_bloc.dart'
-    as _i15;
+    as _i16;
 import 'package:panara_studios/features/feeds/data/datasources/feed_data_sources.dart'
     as _i3;
 import 'package:panara_studios/features/feeds/data/repositories/feed_repository_impl.dart'
@@ -31,9 +31,11 @@ import 'package:panara_studios/features/feeds/data/repositories/feed_repository_
 import 'package:panara_studios/features/feeds/domain/repositories/feed_repository.dart'
     as _i11;
 import 'package:panara_studios/features/feeds/domain/usecases/add_post.dart'
-    as _i14;
+    as _i15;
+import 'package:panara_studios/features/feeds/domain/usecases/fetch_posts.dart'
+    as _i13;
 import 'package:panara_studios/features/feeds/presentation/bloc/feeds_bloc.dart'
-    as _i16;
+    as _i17;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -61,13 +63,18 @@ extension GetItInjectableX on _i1.GetIt {
           dataSources: gh<_i3.FeedDataSources>(),
           networkInfo: gh<_i7.NetworkInfo>(),
         ));
-    gh.factory<_i13.GoogleSignin>(() =>
-        _i13.GoogleSignin(repository: gh<_i9.AuthenticationRepository>()));
-    gh.factory<_i14.AddPost>(
-        () => _i14.AddPost(repository: gh<_i11.FeedRepository>()));
-    gh.factory<_i15.AuthenticationBloc>(
-        () => _i15.AuthenticationBloc(gh<_i13.GoogleSignin>()));
-    gh.factory<_i16.FeedsBloc>(() => _i16.FeedsBloc(gh<_i14.AddPost>()));
+    gh.factory<_i13.FetchPosts>(
+        () => _i13.FetchPosts(repository: gh<_i11.FeedRepository>()));
+    gh.factory<_i14.GoogleSignin>(() =>
+        _i14.GoogleSignin(repository: gh<_i9.AuthenticationRepository>()));
+    gh.factory<_i15.AddPost>(
+        () => _i15.AddPost(repository: gh<_i11.FeedRepository>()));
+    gh.factory<_i16.AuthenticationBloc>(
+        () => _i16.AuthenticationBloc(gh<_i14.GoogleSignin>()));
+    gh.factory<_i17.FeedsBloc>(() => _i17.FeedsBloc(
+          gh<_i15.AddPost>(),
+          gh<_i13.FetchPosts>(),
+        ));
     return this;
   }
 }

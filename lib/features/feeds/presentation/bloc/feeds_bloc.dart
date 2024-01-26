@@ -7,7 +7,11 @@ import 'package:injectable/injectable.dart';
 import 'package:panara_studios/core/functions/get_current_user.dart';
 import 'package:panara_studios/core/functions/local_file_access.dart';
 import 'package:panara_studios/core/params/params.dart';
+import 'package:panara_studios/core/widgets/snackbar_global.dart';
+import 'package:panara_studios/features/feeds/domain/entities/post_entity.dart';
 import 'package:panara_studios/features/feeds/domain/usecases/add_post.dart';
+import 'package:panara_studios/features/feeds/domain/usecases/fetch_posts.dart';
+import 'package:panara_studios/main.dart';
 
 part 'feeds_event.dart';
 part 'feeds_state.dart';
@@ -15,7 +19,8 @@ part 'feeds_state.dart';
 @Injectable()
 class FeedsBloc extends Bloc<FeedsEvent, FeedsState> {
   final AddPost addPost;
-  FeedsBloc(this.addPost) : super(FeedsInitial()) {
+  final FetchPosts fetchPosts;
+  FeedsBloc(this.addPost,this.fetchPosts) : super(FeedsInitial()) {
     on<AddFeedEvent>((event, emit) async {
       var size =
           await decodeImageFromList(File(event.file.path).readAsBytesSync());
@@ -36,7 +41,17 @@ class FeedsBloc extends Bloc<FeedsEvent, FeedsState> {
           time: DateTime.now().toString(),
         );
       await  addPost(post: params);
+      add(FetchfeedEvent());
       }
+    });
+
+    on<FetchfeedEvent>((event, emit)async {
+      emit(FeedLoadingState());
+     var result= await fetchPosts();
+     result.fold((l) {  ScaffoldMessenger.of(navigatorState.currentContext!)
+              .showSnackBar(snackBar(content: l.errorMessage));
+              emit(FeedErrorState());
+              }, (r) => emit(PostState(posts: r)));
     });
   }
 }

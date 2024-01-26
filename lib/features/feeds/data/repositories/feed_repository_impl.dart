@@ -52,8 +52,16 @@ class FeedRepositoryImpl implements FeedRepository {
   }
 
   @override
-  Future<Either<Failure, List<PostEntity>>> fetchFeed() {
-    // TODO: implement fetchFeed
-    throw UnimplementedError();
+  Future<Either<Failure, List<PostEntity>>> fetchFeed()async {
+    if (await networkInfo.isConnected!) {
+      try {
+        return right(await dataSources.fetchFeedFromDB());
+      } catch (e) {
+        return left(ServerFailure(errorMessage: 'something went wrong'));
+      }
+    }else{
+           return left(InternetFailure(errorMessage: 'No internet access'));
+        }
+   
   }
 }

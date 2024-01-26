@@ -3,20 +3,31 @@ import 'package:panara_studios/features/feeds/domain/entities/sub_entities.dart'
 
 class PostModel extends PostEntity {
   PostModel(
-       {required super.id,
+      {required super.id,
       required super.filetype,
       required super.fileRatio,
-
       required super.time,
       required super.fileUrl,
       required super.dp,
       required super.email,
       required super.name,
       required super.uid,
-       super.comment,
+      super.comment,
       required super.likeCount,
-     super.like});
-
+      super.like});
+  factory PostModel.fromjson(Map<String, dynamic> json) {
+    return PostModel(
+        id: json['id'],
+        filetype: json['type'],
+        fileRatio: json['ratio'],
+        time: json['time'],
+        fileUrl: json['photo'],
+        dp: json['dp'],
+        email: json['email'],
+        name: json['name'],
+        uid: json['uid'],
+        likeCount: json['likeCount']);
+  }
 }
 
 class CommentModel extends CommentEntity {

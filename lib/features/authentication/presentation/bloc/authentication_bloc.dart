@@ -43,5 +43,15 @@ class AuthenticationBloc
         });
       }
     });
+
+    on<InitalAuthenticationEvent>((event, emit) {
+       emit(LoadingState());
+      var data = googleSignin.getCurrentUser();
+      if (data.isRight()) {
+         emit(SignInstate());}
+         else{
+          add(SignInEvent());
+         }
+    });
   }
 }

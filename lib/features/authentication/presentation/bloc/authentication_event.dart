@@ -14,3 +14,6 @@ class SignInEvent extends AuthenticationEvent{
 class SignOutEvent extends AuthenticationEvent{
 
 }
+class InitalAuthenticationEvent extends AuthenticationEvent{
+
+}

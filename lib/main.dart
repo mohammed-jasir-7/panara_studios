@@ -10,11 +10,16 @@ import 'package:panara_studios/features/feeds/presentation/bloc/feeds_bloc.dart'
 import 'package:panara_studios/features/feeds/presentation/pages/home_page.dart';
 import 'package:panara_studios/injectable.dart';
 import 'firebase_options.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.playIntegrity,
+  appleProvider: AppleProvider.appAttest,
+  webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
   );
   configureDependencies();
 

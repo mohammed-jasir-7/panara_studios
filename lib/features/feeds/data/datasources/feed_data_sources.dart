@@ -9,6 +9,7 @@ import 'package:panara_studios/features/feeds/data/models/post_model.dart';
 
 abstract class FeedDataSources {
   Future<PostModel>addfeedToDB(PostParams params);
+  Future<List<PostModel>>fetchFeedFromDB();
 }
 
 @Injectable(as: FeedDataSources)
@@ -20,13 +21,15 @@ class FeedDataSourcesImpl extends FeedDataSources {
     var imageDir = root.child('post');
     var upload =
         imageDir.child(DateTime.now().millisecondsSinceEpoch.toString());
+
     try {
-      upload.putFile(File(params.file));
+    await upload.putFile(File(params.file));
     } catch (e) {
       throw ServerException();
     }
-
-    String loc = await upload.getDownloadURL();
+    try {
+      
+         String loc = await upload.getDownloadURL();
     var result = await FirebaseFirestore.instance
         .collection('post')
         .add({'uid': params.user.uid});
@@ -40,6 +43,7 @@ class FeedDataSourcesImpl extends FeedDataSources {
       'dp': params.user.photo,
       'uid': params.user.uid,
       'email': params.user.email,
+      'likeCount':0,
     });
     return 
     PostModel(
@@ -54,5 +58,27 @@ class FeedDataSourcesImpl extends FeedDataSources {
         name: params.user.name,
         uid: params.user.uid);
 
+      
+      
+      
+    } catch (e) {
+      throw ServerException();
+    }
+
+   
+  }
+  
+  @override
+  Future<List<PostModel>> fetchFeedFromDB()async {
+   var result = await FirebaseFirestore.instance
+        .collection('post').get();
+        List<PostModel> posts=[];
+        for (var element in result.docs) {
+        var data=  element.data();
+        posts.add(PostModel.fromjson(data))
+        ;
+        }
+        
+   return posts;
   }
 }
